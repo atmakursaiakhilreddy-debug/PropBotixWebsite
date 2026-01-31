@@ -8,3 +8,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Dependencies & env
+node_modules/
+.env
