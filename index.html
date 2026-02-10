@@ -35,6 +35,69 @@
       overflow-x: hidden;
     }
 
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(10, 10, 11, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .nav__logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav__links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav__link {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+    .nav__link:hover {
+      color: var(--green);
+    }
+    .nav__cta {
+      padding: 0.65rem 1.5rem;
+      background: var(--green);
+      color: var(--bg);
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .nav__cta:hover {
+      background: var(--green-dim);
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav__links { display: none; }
+      .nav__cta { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+    }
+
     /* Hero */
     .hero {
       min-height: 100vh;
@@ -46,6 +109,8 @@
       padding: 2rem 1.5rem 4rem;
       position: relative;
       overflow: hidden;
+      margin-top: 70px;
+      padding-top: 6rem;
     }
     .hero__parallax {
       position: absolute;
@@ -197,11 +262,12 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out);
     }
     .case-card:hover {
-      border-color: rgba(0, 255, 136, 0.2);
-      box-shadow: 0 0 40px var(--green-glow);
+      border-color: rgba(0, 255, 136, 0.3);
+      box-shadow: 0 12px 50px var(--green-glow);
+      transform: translateY(-8px);
     }
     .case-card__image {
       width: 100%;
@@ -248,11 +314,12 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.75rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out);
     }
     .testimonial-card:hover {
-      border-color: rgba(0, 255, 136, 0.2);
-      box-shadow: 0 0 30px var(--green-glow);
+      border-color: rgba(0, 255, 136, 0.3);
+      box-shadow: 0 12px 40px var(--green-glow);
+      transform: translateY(-6px);
     }
     .testimonial-card__quote {
       font-size: 0.95rem;
@@ -291,9 +358,13 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       counter-increment: step;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out);
     }
-    .step:hover { border-color: rgba(0, 255, 136, 0.25); }
+    .step:hover {
+      border-color: rgba(0, 255, 136, 0.3);
+      box-shadow: 0 10px 40px var(--green-glow);
+      transform: translateY(-6px);
+    }
     .step::before {
       content: counter(step);
       position: absolute;
@@ -327,11 +398,12 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
-      transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+      transition: border-color 0.3s ease, transform 0.3s var(--ease-out), box-shadow 0.3s ease;
     }
     .service-card:hover {
-      border-color: rgba(0, 255, 136, 0.2);
-      transform: translateY(-4px);
+      border-color: rgba(0, 255, 136, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 40px var(--green-glow);
     }
     .service-card__icon {
       width: 48px;
@@ -401,14 +473,24 @@
   </style>
 </head>
 <body>
+  <nav id="navbar">
+    <a href="#hero" class="nav__logo">Propbotix</a>
+    <ul class="nav__links">
+      <li><a href="#case-studies" class="nav__link">Results</a></li>
+      <li><a href="#how-it-works" class="nav__link">How it Works</a></li>
+      <li><a href="#services" class="nav__link">Services</a></li>
+    </ul>
+    <a href="https://calendly.com/atmakursaiakhilreddy/propbotix-audit" target="_blank" rel="noopener noreferrer" class="nav__cta">Book Call</a>
+  </nav>
+
   <header class="hero" id="hero">
     <div class="hero__parallax" aria-hidden="true">
-      <div class="hero__float"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=240&h=160&fit=crop" alt="" loading="lazy" decoding="async"></div>
-      <div class="hero__float"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=180&h=180&fit=crop" alt="" loading="lazy" decoding="async"></div>
-      <div class="hero__float"><img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=200&h=140&fit=crop" alt="" loading="lazy" decoding="async"></div>
-      <div class="hero__float"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=160&h=160&fit=crop" alt="" loading="lazy" decoding="async"></div>
-      <div class="hero__float"><img src="https://images.unsplash.com/photo-1676277794214-7f3c5662f1ba?w=140&h=140&fit=crop" alt="" loading="lazy" decoding="async"></div>
-      <div class="hero__float"><img src="https://images.unsplash.com/photo-1678668646612-1fc2e2c5a2d2?w=190&h=130&fit=crop" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero__float"><img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=240&h=160&fit=crop" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero__float"><img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?w=180&h=180&fit=crop" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero__float"><img src="https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?w=200&h=140&fit=crop" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero__float"><img src="https://images.pexels.com/photos/3182808/pexels-photo-3182808.jpeg?w=160&h=160&fit=crop" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero__float"><img src="https://images.pexels.com/photos/3183151/pexels-photo-3183151.jpeg?w=140&h=140&fit=crop" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero__float"><img src="https://images.pexels.com/photos/3183200/pexels-photo-3183200.jpeg?w=190&h=130&fit=crop" alt="" loading="lazy" decoding="async"></div>
     </div>
     <div class="hero__content reveal" id="hero-content">
       <h1 class="hero__title">Ideate.<br>Automate.<br><span>Scale.</span></h1>
@@ -435,7 +517,7 @@
     <p class="section__subtitle reveal">From workflow design to full-stack automation</p>
     <div class="case-grid">
       <article class="case-card reveal">
-        <img class="case-card__image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&h=320&fit=crop" alt="Analytics dashboard" loading="lazy" decoding="async">
+        <img class="case-card__image" src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?w=560&h=320&fit=crop" alt="Analytics dashboard" loading="lazy" decoding="async">
         <h3 class="case-card__title">E-commerce ops automation</h3>
         <p class="case-card__desc">Unified order, inventory, and support workflows for a D2C brand.</p>
         <div class="case-card__metrics">
@@ -445,7 +527,7 @@
         </div>
       </article>
       <article class="case-card reveal">
-        <img class="case-card__image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&h=320&fit=crop" alt="Business intelligence" loading="lazy" decoding="async">
+        <img class="case-card__image" src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?w=560&h=320&fit=crop" alt="Business intelligence" loading="lazy" decoding="async">
         <h3 class="case-card__title">AI-powered lead routing</h3>
         <p class="case-card__desc">Smart scoring and routing cut response time and boosted conversions.</p>
         <div class="case-card__metrics">
@@ -455,7 +537,7 @@
         </div>
       </article>
       <article class="case-card reveal">
-        <img class="case-card__image" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=560&h=320&fit=crop" alt="Development" loading="lazy" decoding="async">
+        <img class="case-card__image" src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=560&h=320&fit=crop" alt="Development" loading="lazy" decoding="async">
         <h3 class="case-card__title">Internal tooling suite</h3>
         <p class="case-card__desc">Custom dashboards and automations for a scaling SaaS team.</p>
         <div class="case-card__metrics">
@@ -581,6 +663,7 @@
 
       var hero = document.getElementById('hero');
       var parallaxFloats = document.querySelectorAll('.hero__float');
+      var navbar = document.getElementById('navbar');
       window.addEventListener('scroll', function() {
         if (!hero) return;
         var rect = hero.getBoundingClientRect();
@@ -590,6 +673,13 @@
           var y = scrolled * depth;
           f.style.transform = 'translate3d(0,' + y + 'px,0)';
         });
+        if (navbar) {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        }
       }, { passive: true });
     })();
   </script>
